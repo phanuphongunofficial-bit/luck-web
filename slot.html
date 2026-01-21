@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>หมุนเสี่ยงโชค 🎰</title>
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  background:
+    linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.9)),
+    url("https://images.unsplash.com/photo-1603380353725-f8a4d39cc41e");
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:sans-serif;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.4);
+  backdrop-filter:blur(6px);
+}
+.box{
+  position:relative;
+  z-index:1;
+  width:340px;
+  padding:30px;
+  text-align:center;
+  background:rgba(0,0,0,.5);
+  color:#fff;
+  border-radius:25px;
+  box-shadow:0 0 40px rgba(255,215,0,.35);
+}
+.slot{
+  display:flex;
+  justify-content:center;
+  margin:20px 0;
+}
+.digit{
+  width:55px;
+  height:70px;
+  margin:0 6px;
+  background:#000;
+  border-radius:12px;
+  font-size:36px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:inset 0 0 15px gold;
+}
+button{
+  padding:10px 18px;
+  margin:6px;
+  border:none;
+  border-radius:14px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+  background:linear-gradient(135deg,#f7971e,#ffd200);
+}
+.back{
+  background:#444;
+  color:#fff;
+  margin-top:10px;
+}
+.note{
+  font-size:13px;
+  opacity:.8;
+  margin-top:10px;
+  font-style:italic;
+}
+</style>
+</head>
+
+<body>
+<div class="box">
+  <h2>🎰 หมุนเสี่ยงโชค</h2>
+  <p>เลือกจำนวนหลัก แล้วกดหมุน</p>
+
+  <div>
+    <button onclick="spin(2)">2 ตัว</button>
+    <button onclick="spin(3)">3 ตัว</button>
+    <button onclick="spin(4)">4 ตัว</button>
+  </div>
+
+  <div class="slot" id="slot"></div>
+
+  <div class="note">หมุนแต่พอดี อย่าหมุนถี่</div>
+
+  <button class="back" onclick="goBack()">⬅ กลับหน้าแรก</button>
+</div>
+
+<script>
+let intervals=[];
+
+function spin(digit){
+  clearAll();
+  const slot=document.getElementById("slot");
+  slot.innerHTML="";
+
+  for(let i=0;i<digit;i++){
+    const el=document.createElement("div");
+    el.className="digit";
+    el.innerText="0";
+    slot.appendChild(el);
+
+    let it=setInterval(()=>{
+      el.innerText=Math.floor(Math.random()*10);
+    },60);
+
+    intervals.push(it);
+
+    setTimeout(()=>{
+      clearInterval(it);
+      el.innerText=Math.floor(Math.random()*10);
+    },900 + i*500);
+  }
+}
+
+function clearAll(){
+  intervals.forEach(i=>clearInterval(i));
+  intervals=[];
+}
+
+function goBack(){
+  window.location.href="index.html";
+}
+</script>
+</body>
+</html>

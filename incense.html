@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>จุดธูปขอเลข 🕯️</title>
+<style>
+body{
+  margin:0;height:100vh;
+  background:linear-gradient(180deg,#0f2027,#203a43,#000);
+  display:flex;justify-content:center;align-items:center;
+  font-family:sans-serif;color:#fff;
+}
+.box{
+  text-align:center;
+  background:rgba(0,0,0,.55);
+  padding:30px;
+  border-radius:22px;
+  box-shadow:0 0 40px rgba(255,200,120,.35);
+  width:320px;
+}
+.incense{
+  width:10px;height:120px;
+  background:#8b4513;
+  margin:20px auto;
+  position:relative;
+  border-radius:5px;
+}
+.fire{
+  width:14px;height:14px;
+  background:orange;
+  border-radius:50%;
+  position:absolute;
+  top:-10px;left:-2px;
+  box-shadow:0 0 15px orange;
+  display:none;
+}
+.smoke{
+  position:absolute;
+  top:-25px;left:-18px;
+  font-size:22px;
+  opacity:.6;
+  animation:smoke 2s infinite;
+  display:none;
+}
+@keyframes smoke{
+  0%{transform:translateY(0);opacity:.6}
+  100%{transform:translateY(-45px);opacity:0}
+}
+.number{
+  font-size:34px;
+  letter-spacing:6px;
+  margin-top:15px;
+}
+button{
+  padding:10px 20px;
+  border:none;
+  border-radius:14px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+  background:linear-gradient(135deg,#f7971e,#ffd200);
+}
+.back{
+  margin-top:15px;
+  background:#444;
+  color:#fff;
+}
+</style>
+</head>
+
+<body>
+<div class="box">
+  <h2>🕯️ จุดธูปขอเลข</h2>
+  <p id="msg">ตั้งจิต อธิษฐาน แล้วกดจุดธูป</p>
+
+  <div class="incense">
+    <div class="fire" id="fire"></div>
+    <div class="smoke" id="smoke">☁️</div>
+  </div>
+
+  <button onclick="light()">🔥 จุดธูป</button>
+
+  <div class="number" id="number">---</div>
+
+  <button class="back" onclick="goBack()">⬅ กลับหน้าแรก</button>
+</div>
+
+<script>
+let done=false;
+
+function light(){
+  if(done) return;
+  done=true;
+
+  document.getElementById("msg").innerText="ธูปกำลังไหม้… เลขกำลังมา";
+  document.getElementById("fire").style.display="block";
+  document.getElementById("smoke").style.display="block";
+
+  let result="";
+  let count=0;
+
+  let timer=setInterval(()=>{
+    let n=Math.floor(Math.random()*10);
+    result+=n;
+    document.getElementById("number").innerText=result;
+    count++;
+
+    if(count===3){
+      clearInterval(timer);
+      document.getElementById("msg").innerText="เลขนี้ปรากฏจากควัน";
+      document.getElementById("fire").style.display="none";
+    }
+  },1200);
+}
+
+function goBack(){
+  window.location.href="index.html";
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>คำอธิษฐานขอเลข 📿</title>
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  background:
+    linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.9)),
+    url("https://images.unsplash.com/photo-1519682337058-a94d519337bc");
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:sans-serif;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.4);
+  backdrop-filter:blur(6px);
+}
+.box{
+  position:relative;
+  z-index:1;
+  width:360px;
+  padding:30px;
+  text-align:center;
+  background:rgba(0,0,0,.55);
+  color:#fff;
+  border-radius:25px;
+  box-shadow:0 0 40px rgba(180,120,255,.4);
+}
+textarea{
+  width:100%;
+  height:90px;
+  border-radius:14px;
+  border:none;
+  padding:10px;
+  font-size:14px;
+  resize:none;
+}
+button{
+  padding:10px 20px;
+  margin-top:12px;
+  border:none;
+  border-radius:14px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+  background:linear-gradient(135deg,#8e2de2,#4a00e0);
+  color:#fff;
+}
+.number{
+  font-size:36px;
+  letter-spacing:8px;
+  margin-top:20px;
+}
+.msg{
+  font-size:14px;
+  opacity:.85;
+  margin-top:10px;
+}
+.back{
+  background:#444;
+  margin-top:15px;
+}
+</style>
+</head>
+
+<body>
+<div class="box">
+  <h2>📿 เขียนคำอธิษฐาน</h2>
+  <p>พิมพ์สิ่งที่ขอ แล้วกดส่งถึงดวง</p>
+
+  <textarea id="wish" placeholder="เช่น ขอให้ได้เลขที่ใช่ งวดนี้ขอเบา ๆ ก็ได้"></textarea>
+
+  <button onclick="pray()">🙏 ส่งคำอธิษฐาน</button>
+
+  <div class="number" id="number">---</div>
+  <div class="msg" id="msg"></div>
+
+  <button class="back" onclick="goBack()">⬅ กลับหน้าแรก</button>
+</div>
+
+<script>
+let done=false;
+
+function pray(){
+  if(done) return;
+  done=true;
+
+  const wish=document.getElementById("wish").value.trim();
+  if(!wish){
+    alert("ยังไม่ได้เขียนคำอธิษฐาน");
+    done=false;
+    return;
+  }
+
+  document.getElementById("msg").innerText="ดวงได้รับคำขอแล้ว…";
+
+  let result="";
+  let count=0;
+
+  let timer=setInterval(()=>{
+    result+=Math.floor(Math.random()*10);
+    document.getElementById("number").innerText=result;
+    count++;
+
+    if(count===3){
+      clearInterval(timer);
+      document.getElementById("msg").innerText=
+        "เลขนี้มาจากแรงศรัทธา อย่าลืมขอบคุณ";
+    }
+  },1000);
+}
+
+function goBack(){
+  window.location.href="index.html";
+}
+</script>
+</body>
+</html>

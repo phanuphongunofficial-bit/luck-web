@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>ศาลเสี่ยงทายออนไลน์ 🍀</title>
+<style>
+body{
+  margin:0;height:100vh;
+  background:url("https://images.unsplash.com/photo-1602173574767-37ac01994b2a")
+    center/cover;
+  font-family:sans-serif;
+  display:flex;justify-content:center;align-items:center;
+}
+body::before{
+  content:"";position:fixed;inset:0;
+  background:rgba(0,0,0,.65);
+  backdrop-filter:blur(6px);
+}
+.box{
+  position:relative;z-index:1;
+  width:360px;
+  background:rgba(0,0,0,.45);
+  color:#fff;
+  padding:30px;
+  border-radius:25px;
+  text-align:center;
+  box-shadow:0 0 50px rgba(255,215,0,.35);
+}
+h1{margin-bottom:10px;}
+.menu{
+  margin-top:20px;
+}
+.card{
+  background:rgba(255,255,255,.08);
+  padding:15px;
+  border-radius:16px;
+  margin:12px 0;
+  cursor:pointer;
+  transition:.3s;
+}
+.card:hover{
+  background:rgba(255,215,0,.25);
+  transform:scale(1.03);
+}
+.note{
+  font-size:13px;
+  opacity:.8;
+  margin-top:15px;
+  font-style:italic;
+}
+</style>
+</head>
+
+<body>
+<div class="box">
+  <h1>🍀 ศาลเสี่ยงทาย</h1>
+  <p>เลือกพิธี แล้วค่อยฝากดวง</p>
+
+  <div class="menu">
+    <div class="card" onclick="go('incense.html')">
+      🕯️ จุดธูปขอเลข<br>
+      <small>เลขปรากฏจากควัน</small>
+    </div>
+
+    <div class="card" onclick="go('slot.html')">
+      🎰 เลขหมุนเสี่ยงโชค<br>
+      <small>หยุดทีละตัว ลุ้นจัด</small>
+    </div>
+
+    <div class="card" onclick="go('wish.html')">
+  📿 คำอธิษฐานขอเลข<br>
+  <small>พิมพ์คำขอ แล้วรับเลข</small>
+</div>
+  </div>
+
+  <div class="note">
+    “โปรดใช้วิจารณญาณ<br>
+    ดวงดีแค่ไหน ถ้าไม่ซื้อก็ไม่ถูก”
+  </div>
+</div>
+
+<script>
+function go(page){
+  window.location.href = page;
+}
+
+function quickLuck(){
+  let n = Math.floor(Math.random()*1000)
+            .toString().padStart(3,'0');
+  alert("เลขที่ได้: " + n + "\nอย่าลืมขอบคุณดวง");
+}
+</script>
+</body>
+</html>
